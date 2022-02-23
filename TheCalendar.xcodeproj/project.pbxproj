@@ -14,6 +14,10 @@
 		D8FCB7AA27C65078002DEC85 /* TheCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7A927C65078002DEC85 /* TheCalendarTests.swift */; };
 		D8FCB7B427C65078002DEC85 /* TheCalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */; };
 		D8FCB7B627C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */; };
+		D8FCB7C527C65103002DEC85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7C427C65103002DEC85 /* CalendarView.swift */; };
+		D8FCB7C927C6512D002DEC85 /* 2022.json in Resources */ = {isa = PBXBuildFile; fileRef = D8FCB7C827C6512D002DEC85 /* 2022.json */; };
+		D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CB27C65179002DEC85 /* DateFestival.swift */; };
+		D8FCB7CE27C65179002DEC85 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CC27C65179002DEC85 /* DateExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		D8FCB7AF27C65078002DEC85 /* TheCalendarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheCalendarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITests.swift; sourceTree = "<group>"; };
 		D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D8FCB7C427C65103002DEC85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		D8FCB7C827C6512D002DEC85 /* 2022.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 2022.json; sourceTree = "<group>"; };
+		D8FCB7CB27C65179002DEC85 /* DateFestival.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFestival.swift; sourceTree = "<group>"; };
+		D8FCB7CC27C65179002DEC85 /* DateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +103,10 @@
 		D8FCB79627C65077002DEC85 /* TheCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */,
-				D8FCB79927C65077002DEC85 /* ContentView.swift */,
-				D8FCB79B27C65078002DEC85 /* Assets.xcassets */,
-				D8FCB7A027C65078002DEC85 /* TheCalendar.entitlements */,
-				D8FCB79D27C65078002DEC85 /* Preview Content */,
+				D8FCB7CA27C65179002DEC85 /* Model */,
+				D8FCB7C627C6512D002DEC85 /* Resources */,
+				D8FCB7C227C650C0002DEC85 /* SupportFiles */,
+				D8FCB7C327C650D6002DEC85 /* UI */,
 			);
 			path = TheCalendar;
 			sourceTree = "<group>";
@@ -127,6 +134,51 @@
 				D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */,
 			);
 			path = TheCalendarUITests;
+			sourceTree = "<group>";
+		};
+		D8FCB7C227C650C0002DEC85 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D8FCB79B27C65078002DEC85 /* Assets.xcassets */,
+				D8FCB79D27C65078002DEC85 /* Preview Content */,
+				D8FCB7A027C65078002DEC85 /* TheCalendar.entitlements */,
+				D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */,
+			);
+			name = SupportFiles;
+			sourceTree = "<group>";
+		};
+		D8FCB7C327C650D6002DEC85 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D8FCB7C427C65103002DEC85 /* CalendarView.swift */,
+				D8FCB79927C65077002DEC85 /* ContentView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D8FCB7C627C6512D002DEC85 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8FCB7C727C6512D002DEC85 /* Chinese24SolarTerms */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D8FCB7C727C6512D002DEC85 /* Chinese24SolarTerms */ = {
+			isa = PBXGroup;
+			children = (
+				D8FCB7C827C6512D002DEC85 /* 2022.json */,
+			);
+			path = Chinese24SolarTerms;
+			sourceTree = "<group>";
+		};
+		D8FCB7CA27C65179002DEC85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8FCB7CB27C65179002DEC85 /* DateFestival.swift */,
+				D8FCB7CC27C65179002DEC85 /* DateExt.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FCB79F27C65078002DEC85 /* Preview Assets.xcassets in Resources */,
+				D8FCB7C927C6512D002DEC85 /* 2022.json in Resources */,
 				D8FCB79C27C65078002DEC85 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +313,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FCB79A27C65077002DEC85 /* ContentView.swift in Sources */,
+				D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */,
+				D8FCB7CE27C65179002DEC85 /* DateExt.swift in Sources */,
 				D8FCB79827C65077002DEC85 /* TheCalendarApp.swift in Sources */,
+				D8FCB7C527C65103002DEC85 /* CalendarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
