@@ -44,15 +44,21 @@ struct CalendarHeaderView: View {
             
             HStack(spacing: 2) {
                 Button("<") {
-                    didClickPreButton()
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        didClickPreButton()
+                    }
                 }
                 
                 Button("今天") {
-                    didClickCurrentDateButton()
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        didClickCurrentDateButton()
+                    }
                 }
                 
                 Button(">") {
-                    didClickNextButton()
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        didClickNextButton()
+                    }
                 }
             }
         }
