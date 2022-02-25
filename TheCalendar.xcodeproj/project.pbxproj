@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8B0041D27C8AF670075F3EA /* festivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */; };
+		D8B0041F27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */; };
 		D8FCB79827C65077002DEC85 /* TheCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */; };
 		D8FCB79A27C65077002DEC85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB79927C65077002DEC85 /* ContentView.swift */; };
 		D8FCB79C27C65078002DEC85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FCB79B27C65078002DEC85 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = festivalsAndMemorialDays.json; sourceTree = "<group>"; };
+		D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chineseTraditionalFestivalsAndMemorialDays.json; sourceTree = "<group>"; };
 		D8FCB79427C65077002DEC85 /* TheCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarApp.swift; sourceTree = "<group>"; };
 		D8FCB79927C65077002DEC85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				D8FCB7C727C6512D002DEC85 /* Chinese24SolarTerms */,
+				D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */,
+				D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -285,9 +291,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B0041D27C8AF670075F3EA /* festivalsAndMemorialDays.json in Resources */,
 				D8FCB79F27C65078002DEC85 /* Preview Assets.xcassets in Resources */,
 				D8FCB7C927C6512D002DEC85 /* 2022.json in Resources */,
 				D8FCB79C27C65078002DEC85 /* Assets.xcassets in Resources */,
+				D8B0041F27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

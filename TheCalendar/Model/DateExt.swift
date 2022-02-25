@@ -66,8 +66,11 @@ extension Date {
     /// 获取日期指定格式的字符串
     /// - Parameter format: 指定格式. 默认为 "yyyyMMdd HH:mm:ss"
     /// - Returns: 日期字符串
-    func string(_ format: String?) -> String? {
+    func string(_ format: String?, _ identifier: Calendar.Identifier? = nil) -> String? {
         let formatter = DateFormatter.init()
+        if (identifier != nil) {
+            formatter.calendar = Calendar(identifier: identifier!)
+        }
         formatter.dateFormat = format
         return formatter.string(from: self)
     }

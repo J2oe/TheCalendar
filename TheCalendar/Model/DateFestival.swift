@@ -9,67 +9,42 @@ import Foundation
 
 extension Date {
     func festivalName() -> String {
-        let components = self.dateComponents()
-        if (components.month == 1 && components.day == 1) {
-            return "元旦节"
-        } else if (components.month == 3 && components.day == 8) {
-            return "妇女节"
-        } else if (components.month == 5 && components.day == 1) {
-            return "劳动节"
-        } else if (components.month == 5 && components.day == 4) {
-            return "青年节"
-        } else if (components.month == 6 && components.day == 1) {
-            return "儿童节"
-        } else if (components.month == 7 && components.day == 1) {
-            return "建党节"
-        } else if (components.month == 8 && components.day == 1) {
-            return "建军节"
-        } else if (components.month == 9 && components.day == 10) {
-            return "教师节"
-        } else if (components.month == 9 && components.day == 30) {
-            return "烈士纪念日"
-        } else if (components.month == 10 && components.day == 1) {
-            return "国庆节"
-        } else {
-            return ""
-        }
+        let dict = festivalsAndMemorialDaysDict()
+        let dateKey = self.string("MMdd")!
+        let string = dict[dateKey]
+        return string ?? ""
     }
     
     func traditionalFestivalName () -> String {
         let components = self.dateComponents(.chinese)
+        let dict = chineseFestivalsAndMemorialDaysDict()
         
-        if (components.month == 12) {
-            var lastMonthDateComponents = components
-            lastMonthDateComponents.day = lastMonthDateComponents.day! + 1
-            lastMonthDateComponents = Calendar(identifier:.chinese).date(from: lastMonthDateComponents)!.dateComponents(.chinese)
-            if (lastMonthDateComponents.month == 1 && lastMonthDateComponents.day == 1) {
-                return "除夕"
-            } else {
-                //
-            }
+        var dateKey = ""
+        let eveKey = chineseNewYearEveKey(components)
+        if (eveKey != nil) {
+            dateKey = eveKey!
         } else {
             if (components.isLeapMonth == false) {
-                if (components.month == 1 && components.day == 1) {
-                    return "春节"
-                } else if (components.month == 1 && components.day == 15) {
-                    return "元宵节"
-                } else if (components.month == 5 && components.day == 5) {
-                    return "端午节"
-                } else if (components.month == 7 && components.day == 7) {
-                    return "七夕节"
-                } else if (components.month == 8 && components.day == 15) {
-                    return "中秋节"
-                } else if (components.month == 9 && components.day == 9) {
-                    return "重阳节"
-                } else {
-                    //
-                }
-            } else {
-                //
+                dateKey = self.string("MMdd", .chinese)!
             }
         }
         
-        return ""
+        let string = dict[dateKey]
+        return string ?? ""
+    }
+    
+    private func chineseNewYearEveKey(_ components: DateComponents) -> String? {
+        var nextDayComponents = components
+        nextDayComponents.day = nextDayComponents.day! + 1
+        
+        let chineseDate = Calendar(identifier:.chinese).date(from: nextDayComponents)!
+        
+        let compareComponents = chineseDate.dateComponents(.chinese)
+        if (compareComponents.month == 1 && compareComponents.day == 1) {
+            return chineseDate.string("MMdd", .chinese)! + "eve"
+        } else {
+            return nil
+        }
     }
     
     func chinese24SolarTerms () -> String {
@@ -78,10 +53,19 @@ extension Date {
         let dict = chinese24SolarTermsDict(components.year)
         let values: [String: String] = dict["short"] ?? [:]
         
-        let key = self.string("MMdd")!
-        print("\(#function). \(key)")
-        let string = values[key]
+        let dateKey = self.string("MMdd")!
+        let string = values[dateKey]
         return string ?? ""
+    }
+    
+    private func fileContentDataWith(_ path: String? = nil) -> Data? {
+        if (path == nil) {
+            return nil
+        }
+        
+        let pathUrl = URL(fileURLWithPath: path!)
+        let data = try? Data(contentsOf: pathUrl, options: .dataReadingMapped)
+        return data
     }
     
     private func chinese24SolarTermsDict(_ yearString: Int? = nil) -> [String: [String: String]] {
@@ -92,12 +76,7 @@ extension Date {
         }
         
         let path = Bundle.main.path(forResource: "\(yearString!)", ofType: "json")
-        if (path == nil) {
-            return empty
-        }
-        
-        let pathUrl = URL(fileURLWithPath: path!)
-        let data = try? Data(contentsOf: pathUrl, options: .dataReadingMapped)
+        let data = fileContentDataWith(path)
         if (data == nil) {
             return empty
         }
@@ -107,6 +86,38 @@ extension Date {
             return dict as! [String: [String: String]]
         }
         
+        return empty
+    }
+    
+    private func festivalsAndMemorialDaysDict() -> [String: String] {
+        let empty: [String: String] = [:]
+        
+        let path = Bundle.main.path(forResource: "festivalsAndMemorialDays", ofType: "json")
+        let data = fileContentDataWith(path)
+        if (data == nil) {
+            return empty
+        }
+        
+        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
+        if (dict != nil) {
+            return dict as! [String: String]
+        }
+        return empty
+    }
+    
+    private func chineseFestivalsAndMemorialDaysDict() -> [String: String] {
+        let empty: [String: String] = [:]
+        
+        let path = Bundle.main.path(forResource: "chineseTraditionalFestivalsAndMemorialDays", ofType: "json")
+        let data = fileContentDataWith(path)
+        if (data == nil) {
+            return empty
+        }
+        
+        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
+        if (dict != nil) {
+            return dict as! [String: String]
+        }
         return empty
     }
 }
