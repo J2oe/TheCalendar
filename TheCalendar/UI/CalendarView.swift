@@ -20,7 +20,6 @@ struct CalendarView: View {
             
             CalendarContentView(monthDate: $selectMonthDate)
         }
-        
     }
     
 }
@@ -240,23 +239,32 @@ struct CalendarContentUnitView: View {
     var theDate: Date? = nil
     var inSelectMonth: Bool = false
     
+    var festivals: [String] = []
+    
     init(_ aDate: Date?, aInSelectMonth: Bool = true) {
         self.theDate = aDate
         self.inSelectMonth = aInSelectMonth
+        self.festivals = collectFestivals()
     }
     
     var body: some View {
         VStack {
             HStack {
-                Text(festivalDesc())
-                    .lineLimit(1)
                 Spacer()
-                Text(theDateDesc())
+                Text(dateADDesc())
                     .lineLimit(1)
             }
-            .padding(2)
             .padding(.leading, 8)
             .padding(.trailing, 8)
+            
+            ForEach(festivals, id: \.self) { f in
+                Text(f)
+                    .lineLimit(1)
+                    .padding(0)
+                    .padding(.leading, 8)
+                    .padding(.trailing, 8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             
             Spacer()
         }
@@ -267,6 +275,31 @@ struct CalendarContentUnitView: View {
         .opacity(opacityValue())
     }
     
+    func collectFestivals() -> [String] {
+        if (theDate == nil) {
+            return []
+        }
+
+        var arr = [String]()
+
+        let festival = theDate!.festivalName()
+        if (festival.count != 0) {
+            arr.append(festival)
+        }
+
+        let tradFestival = theDate!.traditionalFestivalName()
+        if (tradFestival.count != 0) {
+            arr.append(tradFestival)
+        }
+
+        let solarTerm = theDate!.chinese24SolarTerms()
+        if (solarTerm.count != 0) {
+            arr.append(solarTerm)
+        }
+
+        return arr
+    }
+    
     func festivalDesc() -> String {
         if (theDate == nil) {
             return ""
@@ -275,7 +308,7 @@ struct CalendarContentUnitView: View {
         return theDate!.festivalName()
     }
     
-    func theDateDesc() -> String {
+    func dateADDesc() -> String {
         if (theDate == nil) {
             return ""
         }
