@@ -82,4 +82,139 @@ extension Date {
         return dateComponents.weekday!
     }
     
+    func isTodayDate() -> Bool {
+        let components = self.dateComponents()
+        let todayComponents = Foundation.Date().dateComponents()
+        if (components.year == todayComponents.year &&
+            components.month == todayComponents.month &&
+            components.day == todayComponents.day) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isChineseCalendarFirstDay() -> Bool {
+        let components = self.dateComponents(.chinese)
+        return components.day == 1
+    }
+    
+    func chineseCalendarMonthLeapDesc() -> String {
+        let components = self.dateComponents(.chinese)
+        if (components.isLeapMonth == true) {
+            return "闰"
+        }
+        return ""
+    }
+    
+    func chineseCalendarMonthDesc() -> String {
+        let components = self.dateComponents(.chinese)
+        let month = components.month
+        
+        if (month == nil) {
+            return ""
+        }
+        
+        switch month! {
+        case 1:
+            return "正"
+        case 2:
+            return "二"
+        case 3:
+            return "三"
+        case 4:
+            return "四"
+        case 5:
+            return "五"
+        case 6:
+            return "六"
+        case 7:
+            return "七"
+        case 8:
+            return "八"
+        case 9:
+            return "九"
+        case 10:
+            return "十"
+        case 11:
+            return "十一"
+        case 12:
+            return "十二"
+        default:
+            return ""
+        }
+    }
+    
+    func chineseCalendarDayDesc() -> String {
+        let day = self.dateComponents(.chinese).day
+        
+        if (day == nil) {
+            return ""
+        }
+        
+        switch day! {
+        case 1:
+            return "初一"
+        case 2:
+            return "初二"
+        case 3:
+            return "初三"
+        case 4:
+            return "初五"
+        case 5:
+            return "初六"
+        case 6:
+            return "初六"
+        case 7:
+            return "初七"
+        case 8:
+            return "初八"
+        case 9:
+            return "初九"
+        case 10:
+            return "初十"
+        case 11:
+            return "十一"
+        case 12:
+            return "十二"
+        case 13:
+            return "十三"
+        case 14:
+            return "十四"
+        case 15:
+            return "十五"
+        case 16:
+            return "十六"
+        case 17:
+            return "十七"
+        case 18:
+            return "十八"
+        case 19:
+            return "十九"
+        case 20:
+            return "二十"
+        case 21:
+            return "廿一"
+        case 22:
+            return "廿二"
+        case 23:
+            return "廿三"
+        case 24:
+            return "廿四"
+        case 25:
+            return "廿五"
+        case 26:
+            return "廿六"
+        case 27:
+            return "廿七"
+        case 28:
+            return "廿八"
+        case 29:
+            return "廿九"
+        case 30:
+            return "三十"
+        default:
+            return ""
+        }
+    }
 }

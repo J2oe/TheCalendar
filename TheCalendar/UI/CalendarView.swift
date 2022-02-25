@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let UnitCellMinWidth: CGFloat = 120
+let UnitCellMinWidth: CGFloat = 130
 
 struct CalendarView: View {
     @State var selectMonthDate: Date = Foundation.Date()
@@ -238,40 +238,60 @@ struct CalendarContentView: View {
 struct CalendarContentUnitView: View {
     var theDate: Date? = nil
     var isToday: Bool = false
+    var isChineseFirstDay: Bool = false
     var inSelectMonth: Bool = false
     
     var festivals: [String] = []
     
+    
     init(_ aDate: Date?, aInSelectMonth: Bool = true) {
         self.theDate = aDate
         self.inSelectMonth = aInSelectMonth
-        self.isToday = isTodayDate()
+        self.isToday = aDate?.isTodayDate() ?? false
+        self.isChineseFirstDay = aDate?.isChineseCalendarFirstDay() ?? false
         self.festivals = collectFestivals()
     }
     
     var body: some View {
         VStack {
             HStack {
+                VStack(spacing: 0) {
+                    Text(dateChineseDesc())
+                        .lineLimit(1)
+                        .padding(.bottom, 4)
+                        .overlay(alignment: .bottom, content: {
+                            if (isChineseFirstDay) {
+                                Divider().frame(height: 2).background(Color.red)
+                            }
+                        })
+                }
+                .frame(minWidth: 36, alignment: .leading)
+                .padding(2)
+                .padding(.leading, 2)
+                .background(Color.white)
+                
                 Spacer()
+                
                 Text(dateADDesc())
                     .lineLimit(1)
-                    .frame(minWidth: 36)
+                    .frame(minWidth: 36, alignment: .trailing)
                     .padding(2)
                     .foregroundColor(isToday ? Color.white : foreColor())
                     .background(isToday ? Color.red : Color.white)
                     .cornerRadius(isToday ? 6 : 0)
             }
             .padding(.top, 2)
-            .padding(.leading, 6)
             .padding(.trailing, 6)
             
-            ForEach(festivals, id: \.self) { f in
-                Text(f)
-                    .lineLimit(1)
-                    .padding(0)
-                    .padding(.leading, 8)
-                    .padding(.trailing, 8)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
+                ForEach(festivals, id: \.self) { f in
+                    Text(f)
+                        .lineLimit(1)
+                        .padding(0)
+                        .padding(.leading, 8)
+                        .padding(.trailing, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
             
             Spacer()
@@ -281,23 +301,6 @@ struct CalendarContentUnitView: View {
         .background(Color.white)
         .border(Color(red: 128/255.0, green: 128/255.0, blue: 128/255.0), width: 1)
         .opacity(opacityValue())
-    }
-    
-    func isTodayDate() -> Bool {
-        if (theDate == nil) {
-            return false
-        }
-        
-        let d = theDate!
-        let components = d.dateComponents()
-        let todayComponents = Foundation.Date().dateComponents()
-        if (components.year == todayComponents.year &&
-            components.month == todayComponents.month &&
-            components.day == todayComponents.day) {
-            return true
-        } else {
-            return false
-        }
     }
     
     func collectFestivals() -> [String] {
@@ -363,5 +366,25 @@ struct CalendarContentUnitView: View {
     func opacityValue() -> Double {
         return inSelectMonth ? 1.0 : 0.4
     }
+    
+    func dateChineseDesc() -> String {
+        if (theDate == nil) {
+            return ""
+        }
+        
+        let d = theDate!
+        let day = d.dateComponents(.chinese).day!
+        if (day == 1) {
+            let leapMonthDesc = d.chineseCalendarMonthLeapDesc()
+            let monthDesc = d.chineseCalendarMonthDesc()
+            let dayDesc = d.chineseCalendarDayDesc()
+            return "\(leapMonthDesc) \(monthDesc)月\(dayDesc)"
+        } else {
+            let dayDesc = d.chineseCalendarDayDesc()
+            return "\(dayDesc)"
+        }
+    }
+    
+    
     
 }
