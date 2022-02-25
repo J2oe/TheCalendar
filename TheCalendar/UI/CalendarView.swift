@@ -237,6 +237,7 @@ struct CalendarContentView: View {
 
 struct CalendarContentUnitView: View {
     var theDate: Date? = nil
+    var isToday: Bool = false
     var inSelectMonth: Bool = false
     
     var festivals: [String] = []
@@ -244,6 +245,7 @@ struct CalendarContentUnitView: View {
     init(_ aDate: Date?, aInSelectMonth: Bool = true) {
         self.theDate = aDate
         self.inSelectMonth = aInSelectMonth
+        self.isToday = isTodayDate()
         self.festivals = collectFestivals()
     }
     
@@ -253,9 +255,15 @@ struct CalendarContentUnitView: View {
                 Spacer()
                 Text(dateADDesc())
                     .lineLimit(1)
+                    .frame(minWidth: 36)
+                    .padding(2)
+                    .foregroundColor(isToday ? Color.white : foreColor())
+                    .background(isToday ? Color.red : Color.white)
+                    .cornerRadius(isToday ? 6 : 0)
             }
-            .padding(.leading, 8)
-            .padding(.trailing, 8)
+            .padding(.top, 2)
+            .padding(.leading, 6)
+            .padding(.trailing, 6)
             
             ForEach(festivals, id: \.self) { f in
                 Text(f)
@@ -273,6 +281,23 @@ struct CalendarContentUnitView: View {
         .background(Color.white)
         .border(Color(red: 128/255.0, green: 128/255.0, blue: 128/255.0), width: 1)
         .opacity(opacityValue())
+    }
+    
+    func isTodayDate() -> Bool {
+        if (theDate == nil) {
+            return false
+        }
+        
+        let d = theDate!
+        let components = d.dateComponents()
+        let todayComponents = Foundation.Date().dateComponents()
+        if (components.year == todayComponents.year &&
+            components.month == todayComponents.month &&
+            components.day == todayComponents.day) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func collectFestivals() -> [String] {
