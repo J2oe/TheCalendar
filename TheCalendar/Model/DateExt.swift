@@ -82,6 +82,11 @@ extension Date {
         return dateComponents.weekday!
     }
     
+    func isWeekend() -> Bool {
+        let weekday = self.getWeekday()
+        return (weekday == 1 || weekday == 7)
+    }
+    
     func isTodayDate() -> Bool {
         let components = self.dateComponents()
         let todayComponents = Foundation.Date().dateComponents()

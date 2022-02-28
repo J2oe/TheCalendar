@@ -70,7 +70,6 @@ struct CalendarHeaderView: View {
     }
     
     func didClickPreButton() {
-        print("\(#function) \(#line)")
         var components = monthDate.dateComponents()
         components.month = components.month!-1
         let d = Calendar.current.date(from: components)!
@@ -78,12 +77,10 @@ struct CalendarHeaderView: View {
     }
     
     func didClickCurrentDateButton() {
-        print("\(#function) \(#line)")
         monthDate = Foundation.Date()
     }
     
     func didClickNextButton() {
-        print("\(#function) \(#line)")
         var components = monthDate.dateComponents()
         components.month = components.month!+1
         let d = Calendar.current.date(from: components)!
@@ -134,9 +131,9 @@ struct CalendarTitleView: View {
     
     func textColor(_ index: Int) -> Color {
         if (index+1 == 6 || index+1 == 7) {
-            return Color(red: 251/255.0, green: 0, blue: 47/255.0)
+            return redColor()
         } else {
-            return Color(red: 21/255.0, green: 67/255.0, blue: 165/255.0)
+            return blueColor()
         }
     }
 }
@@ -241,7 +238,7 @@ struct CalendarContentUnitView: View {
     var isChineseFirstDay: Bool = false
     var inSelectMonth: Bool = false
     
-    var festivals: [String] = []
+    var festivalsOrMemorialDays: [String] = []
     
     
     init(_ aDate: Date?, aInSelectMonth: Bool = true) {
@@ -249,7 +246,7 @@ struct CalendarContentUnitView: View {
         self.inSelectMonth = aInSelectMonth
         self.isToday = aDate?.isTodayDate() ?? false
         self.isChineseFirstDay = aDate?.isChineseCalendarFirstDay() ?? false
-        self.festivals = collectFestivals()
+        self.festivalsOrMemorialDays = collectFestivals()
     }
     
     var body: some View {
@@ -276,15 +273,15 @@ struct CalendarContentUnitView: View {
                     .lineLimit(1)
                     .frame(minWidth: 36, alignment: .trailing)
                     .padding(2)
-                    .foregroundColor(isToday ? Color.white : foreColor())
-                    .background(isToday ? Color.red : Color.white)
+                    .foregroundColor(todayForeColor())
+                    .background(todayBackColor())
                     .cornerRadius(isToday ? 6 : 0)
             }
             .padding(.top, 2)
             .padding(.trailing, 6)
             
             VStack {
-                ForEach(festivals, id: \.self) { f in
+                ForEach(festivalsOrMemorialDays, id: \.self) { f in
                     Text(f)
                         .lineLimit(1)
                         .padding(0)
@@ -350,16 +347,25 @@ struct CalendarContentUnitView: View {
         }
     }
     
+    func todayForeColor() -> Color {
+        return (isToday ? Color.white : foreColor())
+    }
+    
+    func todayBackColor() -> Color {
+        return (isToday ? Color.red : Color.white)
+    }
+    
     func foreColor() -> Color {
         if (theDate == nil) {
-            return Color(red: 21/255.0, green: 67/255.0, blue: 165/255.0)
+            return blueColor()
         }
         
-        let weekday = theDate!.getWeekday()
-        if (weekday == 1 || weekday == 7) {
-            return Color(red: 251/255.0, green: 0, blue: 47/255.0)
+        if (theDate!.isWeekend()) {
+            return redColor()
+//            return theDate!.weekdayFlip() ? blueColor() : redColor()
         } else {
-            return Color(red: 21/255.0, green: 67/255.0, blue: 165/255.0)
+            return blueColor()
+//            return theDate!.weekdayFlip() ? redColor() : blueColor()
         }
     }
     
@@ -388,3 +394,12 @@ struct CalendarContentUnitView: View {
     
     
 }
+
+fileprivate func redColor() -> Color {
+    return Color(red: 251/255.0, green: 0, blue: 47/255.0)
+}
+
+fileprivate func blueColor() -> Color {
+    return Color(red: 21/255.0, green: 67/255.0, blue: 165/255.0)
+}
+
