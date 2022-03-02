@@ -12,6 +12,16 @@ struct TheCalendarApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    NSWindow.allowsAutomaticWindowTabbing = false
+                }
         }
+        .commands {
+            CommandGroup(replacing: .newItem) {}
+            CommandGroup(replacing: .undoRedo) {}
+            CommandGroup(replacing: .pasteboard) {}
+            MainCommands()
+        }
+        
     }
 }
