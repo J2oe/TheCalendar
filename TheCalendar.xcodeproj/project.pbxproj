@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D803AE2027CF002D00EFB73C /* MainCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803AE1F27CF002D00EFB73C /* MainCommands.swift */; };
+		D803AE2427CF633400EFB73C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803AE2327CF633400EFB73C /* AppDelegate.swift */; };
 		D8B0041D27C8AF670075F3EA /* festivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */; };
 		D8B0041F27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */; };
 		D8FCB79827C65077002DEC85 /* TheCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		D803AE1F27CF002D00EFB73C /* MainCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommands.swift; sourceTree = "<group>"; };
+		D803AE2327CF633400EFB73C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = festivalsAndMemorialDays.json; sourceTree = "<group>"; };
 		D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chineseTraditionalFestivalsAndMemorialDays.json; sourceTree = "<group>"; };
 		D8FCB79427C65077002DEC85 /* TheCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 		D8FCB7C227C650C0002DEC85 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D803AE2327CF633400EFB73C /* AppDelegate.swift */,
 				D8FCB79B27C65078002DEC85 /* Assets.xcassets */,
 				D8FCB79D27C65078002DEC85 /* Preview Content */,
 				D8FCB7A027C65078002DEC85 /* TheCalendar.entitlements */,
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D803AE2427CF633400EFB73C /* AppDelegate.swift in Sources */,
 				D803AE2027CF002D00EFB73C /* MainCommands.swift in Sources */,
 				D8FCB79A27C65077002DEC85 /* ContentView.swift in Sources */,
 				D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */,
