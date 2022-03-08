@@ -1,0 +1,82 @@
+[
+    {
+        "name": "元旦",
+        "holidays": {
+            "start": "20220101",
+            "end": "20220103"
+        },
+        "compensation": []
+    },
+    {
+        "name": "春节",
+        "holidays": {
+            "start": "20220131",
+            "end": "20220206"
+        },
+        "compensation": [
+            {
+                "start": "20220129",
+                "end": "20220130"
+            }
+        ]
+    },
+    {
+        "name": "清明节",
+        "holidays": {
+            "start": "20220403",
+            "end": "20220405"
+        },
+        "compensation": [
+            {
+                "start": "20220402",
+                "end": "20220402"
+            }
+        ]
+    },
+    {
+        "name": "劳动节",
+        "holidays": {
+            "start": "20220430",
+            "end": "20220504"
+        },
+        "compensation": [
+            {
+                "start": "20220424",
+                "end": "20220424"
+            },
+            {
+                "start": "20220507",
+                "end": "20220507"
+            }
+        ]
+    },
+    {
+        "name": "端午节",
+        "holidays": {
+            "start": "20220603",
+            "end": "20220605"
+        },
+        "compensation": []
+    },
+    {
+        "name": "中秋节",
+        "holidays": {
+            "start": "20220910",
+            "end": "20220912"
+        },
+        "compensation": []
+    },
+    {
+        "name": "国庆节",
+        "holidays": {
+            "start": "20221001",
+            "end": "20221007"
+        },
+        "compensation": [
+            {
+                "start": "20221008",
+                "end": "20221009"
+            }
+        ]
+    }
+]

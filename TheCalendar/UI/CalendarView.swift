@@ -360,12 +360,10 @@ struct CalendarContentUnitView: View {
             return blueColor()
         }
         
-        if (theDate!.isWeekend()) {
+        if (theDate!.isLeavingDay()) {
             return redColor()
-//            return theDate!.weekdayFlip() ? blueColor() : redColor()
         } else {
             return blueColor()
-//            return theDate!.weekdayFlip() ? redColor() : blueColor()
         }
     }
     
