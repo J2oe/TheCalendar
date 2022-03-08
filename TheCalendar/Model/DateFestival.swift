@@ -18,7 +18,7 @@ extension Date {
     
     func traditionalFestivalName () -> String {
         let components = self.dateComponents(.chinese)
-        let dict = chineseFestivalsAndMemorialDaysDict()
+        let dict = traditionalFestivalsAndMemorialDaysDict()
         
         var dateKey = ""
         let eveKey = chineseNewYearEveKey(components)
@@ -76,7 +76,7 @@ extension Date {
             return empty
         }
         
-        let path = Bundle.main.path(forResource: "\(yearString!)", ofType: "json")
+        let path = Bundle.main.path(forResource: "solarTerms", ofType: "json")
         let data = fileContentDataWith(path)
         if (data == nil) {
             return empty
@@ -84,9 +84,12 @@ extension Date {
         
         let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
         if (dict != nil) {
-            return dict as! [String: [String: String]]
+            let theDict = dict as! [String: Any]
+            let content = theDict["content"] as? [String: [String: String]]
+            if content != nil {
+                return content!
+            }
         }
-        
         return empty
     }
     
@@ -101,15 +104,19 @@ extension Date {
         
         let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
         if (dict != nil) {
-            return dict as! [String: String]
+            let theDict = dict as! [String: Any]
+            let content = theDict["content"] as? [String: String]
+            if content != nil {
+                return content!
+            }
         }
         return empty
     }
     
-    private func chineseFestivalsAndMemorialDaysDict() -> [String: String] {
+    private func traditionalFestivalsAndMemorialDaysDict() -> [String: String] {
         let empty: [String: String] = [:]
         
-        let path = Bundle.main.path(forResource: "chineseTraditionalFestivalsAndMemorialDays", ofType: "json")
+        let path = Bundle.main.path(forResource: "traditionalFestivalsAndMemorialDays", ofType: "json")
         let data = fileContentDataWith(path)
         if (data == nil) {
             return empty
@@ -117,7 +124,11 @@ extension Date {
         
         let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
         if (dict != nil) {
-            return dict as! [String: String]
+            let theDict = dict as! [String: Any]
+            let content = theDict["content"] as? [String: String]
+            if content != nil {
+                return content!
+            }
         }
         return empty
     }
@@ -228,15 +239,19 @@ extension Date {
     private func chineseHolidaysFileContents() -> [ [String: Any] ] {
         let empty: [ [String: Any] ] = []
         
-        let path = Bundle.main.path(forResource: "holidays2022", ofType: "json")
+        let path = Bundle.main.path(forResource: "legalholidays", ofType: "json")
         let data = fileContentDataWith(path)
         if (data == nil) {
             return empty
         }
         
-        let array = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
-        if (array != nil) {
-            return array as! [ [String: Any] ]
+        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
+        if (dict != nil) {
+            let theDict = dict as! [String: Any]
+            let content = theDict["content"] as? [ [String: Any] ]
+            if content != nil {
+                return content!
+            }
         }
         return empty
     }

@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		D803AE2027CF002D00EFB73C /* MainCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803AE1F27CF002D00EFB73C /* MainCommands.swift */; };
 		D803AE2427CF633400EFB73C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D803AE2327CF633400EFB73C /* AppDelegate.swift */; };
-		D8B0041D27C8AF670075F3EA /* festivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */; };
-		D8B0041F27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */; };
-		D8B0042127C8C2C60075F3EA /* holidays2022.json in Resources */ = {isa = PBXBuildFile; fileRef = D8B0042027C8C2C60075F3EA /* holidays2022.json */; };
+		D8F9A38927D74AFB001B691E /* legalholidays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8F9A38527D74AFB001B691E /* legalholidays.json */; };
+		D8F9A38A27D74AFB001B691E /* festivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8F9A38627D74AFB001B691E /* festivalsAndMemorialDays.json */; };
+		D8F9A38B27D74AFB001B691E /* traditionalFestivalsAndMemorialDays.json in Resources */ = {isa = PBXBuildFile; fileRef = D8F9A38727D74AFB001B691E /* traditionalFestivalsAndMemorialDays.json */; };
+		D8F9A38C27D74AFB001B691E /* solarTerms.json in Resources */ = {isa = PBXBuildFile; fileRef = D8F9A38827D74AFB001B691E /* solarTerms.json */; };
 		D8FCB79827C65077002DEC85 /* TheCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */; };
 		D8FCB79A27C65077002DEC85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB79927C65077002DEC85 /* ContentView.swift */; };
 		D8FCB79C27C65078002DEC85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FCB79B27C65078002DEC85 /* Assets.xcassets */; };
@@ -20,7 +21,6 @@
 		D8FCB7B427C65078002DEC85 /* TheCalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */; };
 		D8FCB7B627C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */; };
 		D8FCB7C527C65103002DEC85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7C427C65103002DEC85 /* CalendarView.swift */; };
-		D8FCB7C927C6512D002DEC85 /* 2022.json in Resources */ = {isa = PBXBuildFile; fileRef = D8FCB7C827C6512D002DEC85 /* 2022.json */; };
 		D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CB27C65179002DEC85 /* DateFestival.swift */; };
 		D8FCB7CE27C65179002DEC85 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CC27C65179002DEC85 /* DateExt.swift */; };
 /* End PBXBuildFile section */
@@ -45,9 +45,10 @@
 /* Begin PBXFileReference section */
 		D803AE1F27CF002D00EFB73C /* MainCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommands.swift; sourceTree = "<group>"; };
 		D803AE2327CF633400EFB73C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = festivalsAndMemorialDays.json; sourceTree = "<group>"; };
-		D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chineseTraditionalFestivalsAndMemorialDays.json; sourceTree = "<group>"; };
-		D8B0042027C8C2C60075F3EA /* holidays2022.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = holidays2022.json; sourceTree = "<group>"; };
+		D8F9A38527D74AFB001B691E /* legalholidays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = legalholidays.json; sourceTree = "<group>"; };
+		D8F9A38627D74AFB001B691E /* festivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = festivalsAndMemorialDays.json; sourceTree = "<group>"; };
+		D8F9A38727D74AFB001B691E /* traditionalFestivalsAndMemorialDays.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = traditionalFestivalsAndMemorialDays.json; sourceTree = "<group>"; };
+		D8F9A38827D74AFB001B691E /* solarTerms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = solarTerms.json; sourceTree = "<group>"; };
 		D8FCB79427C65077002DEC85 /* TheCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FCB79727C65077002DEC85 /* TheCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarApp.swift; sourceTree = "<group>"; };
 		D8FCB79927C65077002DEC85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITests.swift; sourceTree = "<group>"; };
 		D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D8FCB7C427C65103002DEC85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		D8FCB7C827C6512D002DEC85 /* 2022.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 2022.json; sourceTree = "<group>"; };
 		D8FCB7CB27C65179002DEC85 /* DateFestival.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFestival.swift; sourceTree = "<group>"; };
 		D8FCB7CC27C65179002DEC85 /* DateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,20 +179,12 @@
 		D8FCB7C627C6512D002DEC85 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D8FCB7C727C6512D002DEC85 /* Chinese24SolarTerms */,
-				D8B0041E27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json */,
-				D8B0041C27C8AF670075F3EA /* festivalsAndMemorialDays.json */,
-				D8B0042027C8C2C60075F3EA /* holidays2022.json */,
+				D8F9A38627D74AFB001B691E /* festivalsAndMemorialDays.json */,
+				D8F9A38527D74AFB001B691E /* legalholidays.json */,
+				D8F9A38827D74AFB001B691E /* solarTerms.json */,
+				D8F9A38727D74AFB001B691E /* traditionalFestivalsAndMemorialDays.json */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		D8FCB7C727C6512D002DEC85 /* Chinese24SolarTerms */ = {
-			isa = PBXGroup;
-			children = (
-				D8FCB7C827C6512D002DEC85 /* 2022.json */,
-			);
-			path = Chinese24SolarTerms;
 			sourceTree = "<group>";
 		};
 		D8FCB7CA27C65179002DEC85 /* Model */ = {
@@ -308,12 +300,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8B0042127C8C2C60075F3EA /* holidays2022.json in Resources */,
-				D8B0041D27C8AF670075F3EA /* festivalsAndMemorialDays.json in Resources */,
+				D8F9A38B27D74AFB001B691E /* traditionalFestivalsAndMemorialDays.json in Resources */,
+				D8F9A38C27D74AFB001B691E /* solarTerms.json in Resources */,
+				D8F9A38A27D74AFB001B691E /* festivalsAndMemorialDays.json in Resources */,
+				D8F9A38927D74AFB001B691E /* legalholidays.json in Resources */,
 				D8FCB79F27C65078002DEC85 /* Preview Assets.xcassets in Resources */,
-				D8FCB7C927C6512D002DEC85 /* 2022.json in Resources */,
 				D8FCB79C27C65078002DEC85 /* Assets.xcassets in Resources */,
-				D8B0041F27C8B3000075F3EA /* chineseTraditionalFestivalsAndMemorialDays.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
