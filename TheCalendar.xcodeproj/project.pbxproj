@@ -21,7 +21,7 @@
 		D8FCB7B427C65078002DEC85 /* TheCalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */; };
 		D8FCB7B627C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */; };
 		D8FCB7C527C65103002DEC85 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7C427C65103002DEC85 /* CalendarView.swift */; };
-		D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CB27C65179002DEC85 /* DateFestival.swift */; };
+		D8FCB7CD27C65179002DEC85 /* MemoriesDayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CB27C65179002DEC85 /* MemoriesDayManager.swift */; };
 		D8FCB7CE27C65179002DEC85 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FCB7CC27C65179002DEC85 /* DateExt.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,7 @@
 		D8FCB7B327C65078002DEC85 /* TheCalendarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITests.swift; sourceTree = "<group>"; };
 		D8FCB7B527C65078002DEC85 /* TheCalendarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCalendarUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D8FCB7C427C65103002DEC85 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		D8FCB7CB27C65179002DEC85 /* DateFestival.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFestival.swift; sourceTree = "<group>"; };
+		D8FCB7CB27C65179002DEC85 /* MemoriesDayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoriesDayManager.swift; sourceTree = "<group>"; };
 		D8FCB7CC27C65179002DEC85 /* DateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,8 +190,8 @@
 		D8FCB7CA27C65179002DEC85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D8FCB7CB27C65179002DEC85 /* DateFestival.swift */,
 				D8FCB7CC27C65179002DEC85 /* DateExt.swift */,
+				D8FCB7CB27C65179002DEC85 /* MemoriesDayManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 				D803AE2427CF633400EFB73C /* AppDelegate.swift in Sources */,
 				D803AE2027CF002D00EFB73C /* MainCommands.swift in Sources */,
 				D8FCB79A27C65077002DEC85 /* ContentView.swift in Sources */,
-				D8FCB7CD27C65179002DEC85 /* DateFestival.swift in Sources */,
+				D8FCB7CD27C65179002DEC85 /* MemoriesDayManager.swift in Sources */,
 				D8FCB7CE27C65179002DEC85 /* DateExt.swift in Sources */,
 				D8FCB79827C65077002DEC85 /* TheCalendarApp.swift in Sources */,
 				D8FCB7C527C65103002DEC85 /* CalendarView.swift in Sources */,

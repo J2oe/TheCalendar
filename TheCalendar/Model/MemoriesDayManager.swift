@@ -7,18 +7,60 @@
 
 import Foundation
 
-extension Date {
+class MemoriesDayManager {
+    static let shared = MemoriesDayManager()
     
-    func festivalName() -> String {
-        let dict = festivalsAndMemorialDaysDict()
-        let dateKey = self.string("MMdd")!
-        let string = dict[dateKey]
+    private init() {}
+    
+    var _memoriesDays: [String: String]?
+    var memoriesDays: [String: String] {
+        get {
+            if _memoriesDays == nil {
+                _memoriesDays = festivalsAndMemorialDaysDict()
+            }
+            return _memoriesDays!
+        }
+    }
+    
+    var _traditionalMemoriesDays: [String: String]?
+    var traditionalMemoriesDays: [String: String] {
+        get {
+            if _traditionalMemoriesDays == nil {
+                _traditionalMemoriesDays = traditionalFestivalsAndMemorialDaysDict()
+            }
+            return _traditionalMemoriesDays!
+        }
+    }
+    
+    // TODO: 24节气和法定假期，每年都有变更
+    var _chinese24SolarTermsDays: [String: [String: String]]?
+    var chinese24SolarTermsDays: [String: [String: String]] {
+        get {
+            if _chinese24SolarTermsDays == nil {
+                _chinese24SolarTermsDays = chinese24SolarTermsDict(Date().dateComponents().year)
+            }
+            return _chinese24SolarTermsDays!
+        }
+    }
+    
+    var _legalholidays: [String: [[Date]]]?
+    var legalholidays: [String: [[Date]]] {
+        get {
+            if _legalholidays == nil {
+                _legalholidays = chineseHolidaysDict()
+            }
+            return _legalholidays!
+        }
+    }
+    
+    func festivalName(_ aDate: Date) -> String {
+        let dateKey = aDate.string("MMdd")!
+        let string = self.memoriesDays[dateKey]
         return string ?? ""
     }
     
-    func traditionalFestivalName () -> String {
-        let components = self.dateComponents(.chinese)
-        let dict = traditionalFestivalsAndMemorialDaysDict()
+    func traditionalFestivalName (_ aDate: Date) -> String {
+        let components = aDate.dateComponents(.chinese)
         
         var dateKey = ""
         let eveKey = chineseNewYearEveKey(components)
@@ -26,11 +68,11 @@ extension Date {
             dateKey = eveKey!
         } else {
             if (components.isLeapMonth == false) {
-                dateKey = self.string("MMdd", .chinese)!
+                dateKey = aDate.string("MMdd", .chinese)!
             }
         }
         
-        let string = dict[dateKey]
+        let string = self.traditionalMemoriesDays[dateKey]
         return string ?? ""
     }
     
@@ -48,13 +90,10 @@ extension Date {
         }
     }
     
-    func chinese24SolarTerms () -> String {
-        let components = self.dateComponents()
+    func chinese24SolarTerms (_ aDate: Date) -> String {
+        let values: [String: String] = self.chinese24SolarTermsDays["short"] ?? [:]
         
-        let dict = chinese24SolarTermsDict(components.year)
-        let values: [String: String] = dict["short"] ?? [:]
-        
-        let dateKey = self.string("MMdd")!
+        let dateKey = aDate.string("MMdd")!
         let string = values[dateKey]
         return string ?? ""
     }
@@ -82,15 +121,14 @@ extension Date {
             return empty
         }
         
-        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
-        if (dict != nil) {
+        do {
+            let dict = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
             let theDict = dict as! [String: Any]
             let content = theDict["content"] as? [String: [String: String]]
-            if content != nil {
-                return content!
-            }
+            return content!
+        } catch {
+            return empty
         }
-        return empty
     }
     
     private func festivalsAndMemorialDaysDict() -> [String: String] {
@@ -102,15 +140,14 @@ extension Date {
             return empty
         }
         
-        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
-        if (dict != nil) {
+        do {
+            let dict = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
             let theDict = dict as! [String: Any]
             let content = theDict["content"] as? [String: String]
-            if content != nil {
-                return content!
-            }
+            return content!
+        } catch {
+            return empty
         }
-        return empty
     }
     
     private func traditionalFestivalsAndMemorialDaysDict() -> [String: String] {
@@ -122,41 +159,39 @@ extension Date {
             return empty
         }
         
-        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
-        if (dict != nil) {
+        do {
+            let dict = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
             let theDict = dict as! [String: Any]
             let content = theDict["content"] as? [String: String]
-            if content != nil {
-                return content!
-            }
+            return content!
+        } catch {
+            return empty
         }
-        return empty
     }
     
     /// 是否为假期
     /// - Returns: true: 是; false: 否
-    func isLeavingDay() -> Bool {
+    func isLeavingDay(_ aDate: Date) -> Bool {
         // TODO: 先判断法定假期，还是先判断周末？
-        if (self.isWeekend()) {
+        if (aDate.isWeekend()) {
             // 周末：判断是否为假期调班
-            return !self.isLegalHolidayCompensation()
+            return !self.isLegalHolidayCompensation(aDate)
         } else {
             // 工作日：判断是否为假期
-            return self.isLegalHolidays()
+            return self.isLegalHolidays(aDate)
         }
     }
     
     /// 是否为法定假期
     /// - Returns: true: 是; false: 否
-    private func isLegalHolidays() -> Bool {
-        let dict = self.chineseHolidaysDict()
-        let dateRangesArray = dict["holidays"]!
+    private func isLegalHolidays(_ aDate: Date) -> Bool {
+        let dateRangesArray = self.legalholidays["holidays"]!
         
         for rangeItem in dateRangesArray {
             let startDate = rangeItem.first!
             let endDate = rangeItem.last!
             
-            if (self.compare(startDate) != .orderedAscending && self.compare(endDate) != .orderedDescending) {
+            if (aDate.compare(startDate) != .orderedAscending && aDate.compare(endDate) != .orderedDescending) {
                 return true
             }
         }
@@ -166,15 +201,14 @@ extension Date {
     
     /// 是否为法定假期调班
     /// - Returns: true: 是; false: 否
-    private func isLegalHolidayCompensation() -> Bool {
-        let dict = self.chineseHolidaysDict()
-        let dateRangesArray = dict["compensations"]!
+    private func isLegalHolidayCompensation(_ aDate: Date) -> Bool {
+        let dateRangesArray = self.legalholidays["compensations"]!
         
         for rangeItem in dateRangesArray {
             let startDate = rangeItem.first!
             let endDate = rangeItem.last!
             
-            if (self.compare(startDate) != .orderedAscending && self.compare(endDate) != .orderedDescending) {
+            if (aDate.compare(startDate) != .orderedAscending && aDate.compare(endDate) != .orderedDescending) {
                 return true
             }
         }
@@ -209,8 +243,8 @@ extension Date {
         let endday = holidays["end"]!
         
         let dateFormat = "yyyyMMdd"
-        let startDate = self.createDate(startday, dateFormat)!
-        let endDate = self.createDate(endday, dateFormat)!
+        let startDate = Date.createDate(startday, dateFormat)!
+        let endDate = Date.createDate(endday, dateFormat)!
         
         let dateRange: [Date] = [startDate, endDate]
         return dateRange
@@ -226,8 +260,8 @@ extension Date {
             let endday = compensation["end"]!
             
             let dateFormat = "yyyyMMdd"
-            let startDate = self.createDate(startday, dateFormat)!
-            let endDate = self.createDate(endday, dateFormat)!
+            let startDate = Date.createDate(startday, dateFormat)!
+            let endDate = Date.createDate(endday, dateFormat)!
             
             let dateRange: [Date] = [startDate, endDate]
             compensationDateRanges.append(dateRange)
@@ -245,20 +279,13 @@ extension Date {
             return empty
         }
         
-        let dict = try? JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
-        if (dict != nil) {
+        do {
+            let dict = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .mutableLeaves, .fragmentsAllowed])
             let theDict = dict as! [String: Any]
             let content = theDict["content"] as? [ [String: Any] ]
-            if content != nil {
-                return content!
-            }
+            return content!
+        } catch {
+            return empty
         }
-        return empty
-    }
-    
-    func createDate(_ string: String, _ dateFormat: String) -> Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = dateFormat
-        return formatter.date(from: string)
     }
 }

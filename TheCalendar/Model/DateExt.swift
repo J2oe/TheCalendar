@@ -8,6 +8,13 @@
 import Foundation
 
 extension Date {
+    
+    static func createDate(_ string: String, _ dateFormat: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = dateFormat
+        return formatter.date(from: string)
+    }
+    
     /// 获取日期月份的天数
     /// - Returns: 日期月份的天数
     func getMonthDaysCount() -> Int {

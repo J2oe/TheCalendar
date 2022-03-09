@@ -307,17 +307,17 @@ struct CalendarContentUnitView: View {
 
         var arr = [String]()
 
-        let festival = theDate!.festivalName()
+        let festival = MemoriesDayManager.shared.festivalName(theDate!)
         if (festival.count != 0) {
             arr.append(festival)
         }
 
-        let tradFestival = theDate!.traditionalFestivalName()
+        let tradFestival = MemoriesDayManager.shared.traditionalFestivalName(theDate!)
         if (tradFestival.count != 0) {
             arr.append(tradFestival)
         }
 
-        let solarTerm = theDate!.chinese24SolarTerms()
+        let solarTerm = MemoriesDayManager.shared.chinese24SolarTerms(theDate!)
         if (solarTerm.count != 0) {
             arr.append(solarTerm)
         }
@@ -330,7 +330,7 @@ struct CalendarContentUnitView: View {
             return ""
         }
         
-        return theDate!.festivalName()
+        return MemoriesDayManager.shared.festivalName(theDate!)
     }
     
     func dateADDesc() -> String {
@@ -360,7 +360,7 @@ struct CalendarContentUnitView: View {
             return blueColor()
         }
         
-        if (theDate!.isLeavingDay()) {
+        if (MemoriesDayManager.shared.isLeavingDay(theDate!)) {
             return redColor()
         } else {
             return blueColor()
