@@ -93,7 +93,7 @@ class MemoriesDayManager {
     func chinese24SolarTerms (_ aDate: Date) -> String {
         let values: [String: String] = self.chinese24SolarTermsDays["short"] ?? [:]
         
-        let dateKey = aDate.string("MMdd")!
+        let dateKey = aDate.string("yyyyMMdd")!
         let string = values[dateKey]
         return string ?? ""
     }
